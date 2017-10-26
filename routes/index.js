@@ -28,15 +28,15 @@ router.post('/invite', function(req, res) {
           if (err) { return res.send('Error:' + err); }
           body = JSON.parse(body);
           if (body.ok) {
-            res.render('result', {
-              community: config.community,
+            res.JSON('result', {
+              //community: config.community,
               message: 'Success! Check &ldquo;'+ req.body.email +'&rdquo; for an invite from Slack.'
             });
           } else {
             var error = body.error;
             if (error === 'already_invited' || error === 'already_in_team') {
-              res.render('result', {
-                community: config.community,
+              res.JSON('result', {
+                //community: config.community,
                 message: 'Success! You were already invited.<br>' +
                         'Visit <a href="https://'+ config.slackUrl +'">'+ config.community +'</a>'
               });
@@ -71,8 +71,8 @@ router.post('/invite', function(req, res) {
           doInvite();
         } else {
           error = 'Invalid captcha.';
-          res.render('result', {
-            community: config.community,
+          res.JSON('result', {
+            //community: config.community,
             message: 'Failed! ' + error,
             isFailed: true
           });
@@ -97,8 +97,8 @@ router.post('/invite', function(req, res) {
       }
     }
 
-    res.render('result', {
-      community: config.community,
+    res.JSON('result', {
+      //community: config.community,
       message: 'Failed! ' + errMsg.join(' and ') + '.',
       isFailed: true
     });

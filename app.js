@@ -5,11 +5,14 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     config = require('./config'),
-    i18n = require("i18n");
+    i18n = require("i18n")
+    cors = require('cors')
 
 var routes = require('./routes/index');
 
 var app = express();
+
+app.use(cors())
 
 i18n.configure({
     defaultLocale: "en",
